@@ -1,0 +1,97 @@
+html {
+  font-family: "Ubuntu", sans-serif;
+}
+p.betreff {
+  font-weight: bold;
+  margin-bottom: .5cm;
+}
+@media print {
+  #head .adresse {
+    margin-bottom: .5cm;
+  }
+  #head .adresse p {
+    margin: 0;
+    padding: 0;
+  }
+  #head .adresse p.email:before {
+    content: 'E-Mail: ';
+  }
+  #head .datum {
+    string-set: datum content();
+  }
+  #head .datum:before {
+    content: 'Datum: ';
+  }
+  #head #sender-adresse {
+    display: block;
+    position: relative;
+    text-align: right;
+    width: 100%;
+    min-height: 3cm;
+  }
+  #head #sender-adresse .plz {
+    string-set: sender-plz content();
+  }
+  #head #sender-adresse .ort {
+    string-set: sender-ort content();
+  }
+  #head #sender-adresse #sender-name {
+    string-set: sender-name content();
+  }
+  #head #empfaenger-adresse {
+    display: block;
+    position: relative;
+    text-align: left;
+    width: 100%;
+    min-height: 3cm;
+  }
+  #head #bezugszeichenblock {
+    margin-left: 12cm;
+    min-height: 2cm;
+  }
+  sender-name {
+    content: string(sender-name);
+  }
+  sender-plz {
+    content: string(sender-plz);
+  }
+  sender-ort {
+    content: string(sender-ort);
+  }
+  .unterschrift {
+    margin-top: 1.5cm;
+  }
+  .beilagen {
+    display: block;
+  }
+  .beilagen:before {
+    content: 'Beilagen: ';
+    display: inline-block;
+  }
+  .beilagen ul {
+    display: inline-block;
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  .beilagen ul li {
+    display: inline-block;
+  }
+  .beilagen ul li:after {
+    content: ', ';
+  }
+  .beilagen ul li:last-child:after {
+    content: '';
+  }
+  @page {
+    margin: 2cm;
+    font-family: "Ubuntu", sans-serif;
+    
+    @bottom-left {
+      content: string(sender-name);
+    }
+    @bottom-right {
+      content: string(sender-ort) ' am ' string(datum);
+    }
+  }
+}
